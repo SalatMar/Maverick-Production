@@ -1,0 +1,94 @@
+/* GENERAL SETUP */
+
+html {
+    background-color: black;
+    font-family: "Anek Latin", sans-serif;
+    margin: 0;
+}
+
+body {
+    outline: auto;
+    margin: 0;
+    padding: 0; 
+}
+
+/* HEADER SETUP */
+
+header {
+    display: flex;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+}
+
+.logo {
+    height: 100px;
+    padding-right: 20px;
+}
+
+h1 {
+    font-size: 54px;
+    font-weight: 400;
+    color: white;
+    letter-spacing: 5px;
+    margin: 0;
+}
+
+/* PAGE LINKS */
+
+.links {
+    padding-top: 5px;
+}
+
+a {
+    font-size: 26px;
+    font-weight: 200;
+    color: white;
+    margin-right: 20px;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+/* MAIN SECTION */
+
+main {
+    display: flex;
+    outline: auto;
+}
+
+.main_left {
+    width: 15%;
+    outline: auto;
+}
+
+.main_right {
+    width: 15%;
+    outline: auto;
+}
+
+.main_center {
+    width: 70%;
+    outline: auto;
+    text-align: center;
+}
+
+h2 {
+    font-size: 54px;
+    font-weight: 400;
+    color: white;
+}
