@@ -89,6 +89,8 @@ main {
     min-height: 100vh;
  }
 
+ /* HOME SECTION */
+
  #home {
     background-image: url("../images/headshot.jpg");
     background-size: cover;
@@ -110,6 +112,8 @@ main {
  .main_heading {
     padding-top: 55vh;
  }
+
+ /* ABOUT SECTION */
 
 #about {
     background-image: url("../images/about_bg_trans.png");
@@ -143,8 +147,10 @@ main {
     line-height: 1.2;
 }
 
+/* SERVICES SECTION */
+
 #services {
-    background-image: url("../images/services_bg.JPG");
+    background-image: url("../images/services_bg_trans.png");
     background-size: cover;
     background-position: center;
 
@@ -159,26 +165,54 @@ main {
     height: 91.2vh;
 }
 
-#gallery {
+/* PROJECTS SECTION */
+
+#projects {
+    background-image: url("../images/projects_bg_trans.png");
+    background-size: cover;
+    background-position: center;
+
     scroll-margin-top: 80px;
     display: flex;
     flex-direction: column;
     justify-content: start;
+    text-align: center;
+    /* outline: auto; */
+    
     width: 100vw;
     height: 91.2vh;
-    /* outline: auto; */
-    text-align: center;
 }
 
+.projects_imgs {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 50px;
+}
+
+.proj_img {
+    height: 350px;
+    width: 350px;
+    margin-left: 60px;
+    margin-top: 30px;
+}
+
+/* CONTACT SECTION */
+
 #contact {
+    background-image: url("../images/contact_bg_trans.png");
+    background-size: cover;
+    background-position: center;
+
     scroll-margin-top: 80px;
     display: flex;
     flex-direction: column;
     justify-content: start;
+    text-align: center;
+    /* outline: auto; */
+    
     width: 100vw;
     height: 91.2vh;
-    outline: auto;
-    text-align: center;
 }
 
 /* MAIN SECTION HEADINGS */
@@ -192,5 +226,17 @@ h2 {
 h3 {
     font-size: 34px;
     font-weight: 200;
+    color: white;
+}
+
+/* FOOTER SETUP */
+
+footer {
+    text-align: center;
+}
+
+h4 {
+    font-size: 24px;
+    font-weight: 100;
     color: white;
 }
