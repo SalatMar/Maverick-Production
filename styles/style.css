@@ -1,7 +1,7 @@
 /* GENERAL SETUP */
 
 html {
-    background-color: black;
+    background-color: #FED932;
     font-family: "Anek Latin", sans-serif;
     scroll-behavior: smooth;
     margin: 0;
@@ -17,7 +17,7 @@ body {
 header {
     position: sticky;
     top: 0;
-    background-color: black;
+    background-color: #FED932;
     display: flex;
     align-items: center;
     text-align: left;
@@ -40,8 +40,8 @@ header {
 
 h1 {
     font-size: 42px;
-    font-weight: 400;
-    color: white;
+    font-weight: 600;
+    color: #4E9FDE;
     letter-spacing: 5px;
     margin: 0;
 }
@@ -54,8 +54,8 @@ h1 {
 
 a {
     font-size: 26px;
-    font-weight: 200;
-    color: white;
+    font-weight: 300;
+    color: #4E9FDE;
     margin-right: 20px;
 }
 
@@ -92,7 +92,7 @@ main {
  /* HOME SECTION */
 
  #home {
-    background-image: url("../images/headshot.jpg");
+    background-image: url("../images/main_bg.JPEG");
     background-size: cover;
     background-origin: padding-box;
 
@@ -110,15 +110,16 @@ main {
  }
 
  .main_heading {
-    padding-top: 55vh;
+    padding-top: 10vh;
  }
 
  /* ABOUT SECTION */
 
 #about {
-    background-image: url("../images/about_bg_trans.png");
+    background-color: #FED932;
+    /* background-image: url("../images/about_bg_trans.png");
     background-size: cover;
-    background-position: center;
+    background-position: center; */
 
     scroll-margin-top: 80px;
     display: flex;
@@ -142,17 +143,18 @@ main {
     /* outline: auto; */
     width: 70%;
     font-size: 32px;
-    font-weight: 100;
-    color: white;
+    font-weight: 200;
+    color: #02C0D0;
     line-height: 1.2;
 }
 
 /* SERVICES SECTION */
 
 #services {
-    background-image: url("../images/services_bg_trans.png");
+    background-color: #FFF4AA;
+    /* background-image: url("../images/services_bg_trans.png");
     background-size: cover;
-    background-position: center;
+    background-position: center; */
 
     scroll-margin-top: 80px;
     display: flex;
@@ -168,9 +170,10 @@ main {
 /* PROJECTS SECTION */
 
 #projects {
-    background-image: url("../images/projects_bg_trans.png");
+    background-color: #FED932;
+    /* background-image: url("../images/projects_bg_trans.png");
     background-size: cover;
-    background-position: center;
+    background-position: center; */
 
     scroll-margin-top: 80px;
     display: flex;
@@ -204,9 +207,10 @@ main {
 /* CONTACT SECTION */
 
 #contact {
-    background-image: url("../images/contact_bg_trans.png");
+    background-color: #FFF4AA;
+    /* background-image: url("../images/contact_bg_trans.png");
     background-size: cover;
-    background-position: center;
+    background-position: center; */
 
     scroll-margin-top: 80px;
     display: flex;
@@ -242,14 +246,18 @@ form {
 
 h2 {
     font-size: 60px;
-    font-weight: 300;
-    color: white;
+    font-weight: 500;
+    color: #4E9FDE;
+    /* -webkit-text-stroke: 1px black;
+    paint-order: stroke fill; */
 }
 
 h3 {
     font-size: 34px;
-    font-weight: 200;
-    color: white;
+    font-weight: 300;
+    color: #4E9FDE;
+    /* -webkit-text-stroke: 1px black;
+    paint-order: stroke fill; */
 }
 
 /* FOOTER SETUP */
@@ -261,5 +269,5 @@ footer {
 h4 {
     font-size: 24px;
     font-weight: 100;
-    color: white;
+    color: #02C0D0;
 }
