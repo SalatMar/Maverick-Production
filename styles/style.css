@@ -1,273 +1,311 @@
-/* GENERAL SETUP */
+/* ============================================================
+   RESET / BASE
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
 html {
     background-color: #FED932;
     font-family: "Anek Latin", sans-serif;
     scroll-behavior: smooth;
-    margin: 0;
+    /* Prevent any stray element from causing horizontal scroll */
+    overflow-x: hidden;
 }
 
 body {
     margin: 0;
-    padding: 0; 
+    padding: 0;
+    overflow-x: hidden;
 }
 
-/* HEADER SETUP */
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/* ============================================================
+   COLOR / TYPE TOKENS
+   Fluid type: scales smoothly between mobile and desktop so
+   text and layout resize together (no more "static" elements).
+   ============================================================ */
+
+:root {
+    --brand-yellow: #FED932;
+    --brand-cream: #FFF4AA;
+    --brand-blue: #4E9FDE;
+    --brand-teal: #02C0D0;
+
+    --header-height: 80px;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
 
 header {
     position: sticky;
     top: 0;
-    background-color: #FED932;
-    display: flex;
-    align-items: center;
-    text-align: left;
-    justify-content: space-between;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 20px;
     z-index: 10;
+
+    background-color: var(--brand-yellow);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px 20px;
+
+    padding: 8px 20px;
 }
 
 .logo_title {
     display: flex;
     align-items: center;
+    gap: 16px;
+    min-width: 0; /* allow title to shrink instead of overflowing */
 }
 
 .logo {
-    height: 70px;
-    padding-right: 20px;
+    height: clamp(44px, 8vw, 70px);
+    width: auto;
+    flex-shrink: 0;
 }
 
 h1 {
-    font-size: 42px;
+    font-size: clamp(1.25rem, 3.5vw, 2.625rem);
     font-weight: 600;
-    color: #4E9FDE;
-    letter-spacing: 5px;
+    color: var(--brand-blue);
+    letter-spacing: clamp(1px, 0.4vw, 5px);
     margin: 0;
+    line-height: 1.1;
 }
 
-/* PAGE LINKS */
+/* ============================================================
+   NAV LINKS
+   ============================================================ */
 
 .links {
-    padding-right: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 20px;
 }
 
 a {
-    font-size: 26px;
+    font-size: clamp(1rem, 1.8vw, 1.625rem);
     font-weight: 300;
-    color: #4E9FDE;
-    margin-right: 20px;
+    color: var(--brand-blue);
+    text-decoration: none;
+}
+
+a:hover,
+a:active {
+    text-decoration: underline;
 }
 
 a.home:hover {
     text-decoration: none;
 }
 
-a:link {
-  text-decoration: none;
-}
-
-a:visited {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-a:active {
-  text-decoration: underline;
-}
-
-/* MAIN SECTION */
+/* ============================================================
+   MAIN LAYOUT
+   ============================================================ */
 
 main {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centers items vertically */
-    align-items: center; /* Centers items horizontally */
-    min-height: 100vh;
- }
+}
 
- /* HOME SECTION */
+/* Shared section behaviour: each section fills the viewport
+   (minus the header) but can GROW if content needs more room. */
+main > div {
+    width: 100%;
+    min-height: calc(100vh - var(--header-height));
+    scroll-margin-top: var(--header-height);
 
- #home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    padding: 40px 20px;
+    gap: 16px;
+}
+
+/* Inner content gets a sensible reading width on large screens */
+main > div > * {
+    max-width: 1100px;
+}
+
+/* ============================================================
+   HOME SECTION
+   ============================================================ */
+
+#home {
     background-image: url("../images/main_bg.JPEG");
     background-size: cover;
-    background-origin: padding-box;
+    background-position: center;
+    justify-content: flex-start;
+}
 
-    scroll-margin-top: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    text-align: center;
-    /* outline: auto; */
-    
-    width: 100vw;
-    height: 91.2vh;
-    overflow: hidden;
- }
-
- .main_heading {
+.main_heading {
     padding-top: 10vh;
- }
+}
 
- /* ABOUT SECTION */
+/* ============================================================
+   ABOUT SECTION
+   ============================================================ */
 
 #about {
-    background-color: #FED932;
-    /* background-image: url("../images/about_bg_trans.png");
-    background-size: cover;
-    background-position: center; */
-
-    scroll-margin-top: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    text-align: center;
-    line-height: 0.05;
-    /* outline: auto; */
-
-    width: 100vw;
-    height: 91.2vh;
+    background-color: var(--brand-yellow);
 }
 
 .hs_circle {
-    height: 350px;
-    width: 350px;
+    height: clamp(180px, 30vw, 350px);
+    width: clamp(180px, 30vw, 350px);
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .bio {
-    /* outline: auto; */
-    width: 70%;
-    font-size: 32px;
+    width: min(70%, 900px);
+    max-width: 100%;
+    font-size: clamp(1rem, 1.8vw, 2rem);
     font-weight: 200;
-    color: #02C0D0;
-    line-height: 1.2;
+    color: var(--brand-teal);
+    line-height: 1.4;
 }
 
-/* SERVICES SECTION */
+/* ============================================================
+   SERVICES SECTION
+   ============================================================ */
 
 #services {
-    background-color: #FFF4AA;
-    /* background-image: url("../images/services_bg_trans.png");
-    background-size: cover;
-    background-position: center; */
-
-    scroll-margin-top: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    text-align: center;
-    /* outline: auto; */        
-
-    width: 100vw;
-    height: 91.2vh;
+    background-color: var(--brand-cream);
 }
 
-/* PROJECTS SECTION */
+/* ============================================================
+   PROJECTS SECTION
+   ============================================================ */
 
 #projects {
-    background-color: #FED932;
-    /* background-image: url("../images/projects_bg_trans.png");
-    background-size: cover;
-    background-position: center; */
-
-    scroll-margin-top: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    text-align: center;
-    /* outline: auto; */
-    
-    width: 100vw;
-    height: 91.2vh;
+    background-color: var(--brand-yellow);
 }
 
 .projects_imgs {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: clamp(20px, 4vw, 60px);
+    width: min(100%, 900px);
+    padding-top: 30px;
 }
 
 .proj_img {
-    height: 350px;
-    width: 350px;
-    margin-left: 60px;
-    margin-top: 30px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    transition: opacity 0.2s ease;
 }
 
 .proj_img:hover {
     opacity: 0.6;
 }
 
-/* CONTACT SECTION */
+/* ============================================================
+   CONTACT SECTION
+   ============================================================ */
 
 #contact {
-    background-color: #FFF4AA;
-    /* background-image: url("../images/contact_bg_trans.png");
-    background-size: cover;
-    background-position: center; */
-
-    scroll-margin-top: 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center; /* Centers items horizontally */
-    text-align: center;
-    /* outline: auto; */
-    
-    width: 100vw;
-    height: 91.2vh;
+    background-color: var(--brand-cream);
 }
 
 form {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center; */
-    font-size: 24px;
+    font-size: clamp(1rem, 1.6vw, 1.5rem);
     font-weight: 200;
     color: white;
-
-    width: 50vw;
+    width: min(50vw, 600px);
 }
 
-.form_q {
-    
-    /* text-align: left; */
-    outline: auto;
-}
-
-/* MAIN SECTION HEADINGS */
+/* ============================================================
+   SECTION HEADINGS
+   ============================================================ */
 
 h2 {
-    font-size: 60px;
+    font-size: clamp(2rem, 6vw, 3.75rem);
     font-weight: 500;
-    color: #4E9FDE;
-    /* -webkit-text-stroke: 1px black;
-    paint-order: stroke fill; */
+    color: var(--brand-blue);
+    margin: 0;
+    line-height: 1.1;
 }
 
 h3 {
-    font-size: 34px;
+    font-size: clamp(1.2rem, 3vw, 2.125rem);
     font-weight: 300;
-    color: #4E9FDE;
-    /* -webkit-text-stroke: 1px black;
-    paint-order: stroke fill; */
+    color: var(--brand-blue);
+    margin: 0;
+    line-height: 1.2;
 }
 
-/* FOOTER SETUP */
+/* ============================================================
+   FOOTER
+   ============================================================ */
 
 footer {
     text-align: center;
+    background-color: var(--brand-yellow);
+    padding: 10px 20px;
 }
 
 h4 {
-    font-size: 24px;
+    font-size: clamp(0.9rem, 1.6vw, 1.5rem);
     font-weight: 100;
-    color: #02C0D0;
+    color: var(--brand-teal);
+    margin: 0;
+}
+
+/* ============================================================
+   RESPONSIVE — TABLET / MOBILE
+   ============================================================ */
+
+/* Stack the header (logo/title on top, links below, centered)
+   once the single-row layout gets cramped. */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .logo_title {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .links {
+        justify-content: center;
+    }
+
+    /* Header is taller when stacked — give sections room to clear it. */
+    :root {
+        --header-height: 120px;
+    }
+
+    .main_heading {
+        padding-top: 6vh;
+    }
+}
+
+@media (max-width: 480px) {
+    main > div {
+        padding: 32px 16px;
+    }
+
+    .links {
+        gap: 6px 14px;
+    }
 }
