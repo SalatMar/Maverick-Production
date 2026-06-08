@@ -135,6 +135,8 @@ window.addEventListener(
 // --- Keyboard ---------------------------------------------------------------
 window.addEventListener("keydown", function (e) {
     if (locked()) return;
+    // Don't hijack arrow/Home/End/PageUp-Down while typing in a form field.
+    if (e.target.closest("input, textarea, select")) return;
     switch (e.key) {
         case "ArrowDown":
         case "PageDown":
@@ -226,3 +228,93 @@ window.addEventListener("scroll", function () {
         }
     }, 140);
 });
+
+// ============================================================
+//  Contact form: live word counter + AJAX submit (Formspree)
+//  ------------------------------------------------------------
+//  Submits in the background so the visitor stays on the page,
+//  caps the Project Description at MAX_WORDS, and shows a status
+//  message. Works as soon as a real Formspree ID is in the
+//  form's action; until then a submit just reports an error.
+// ============================================================
+
+(function () {
+    const form = document.getElementById("contact_form");
+    if (!form) return;
+
+    const message = form.querySelector('textarea[name="message"]');
+    const counter = document.getElementById("word_now");
+    const status = form.querySelector(".form_status");
+    const MAX_WORDS = 200;
+
+    function countWords(text) {
+        const trimmed = text.trim();
+        return trimmed ? trimmed.split(/\s+/).length : 0;
+    }
+
+    function updateCount() {
+        const n = countWords(message.value);
+        if (counter) counter.textContent = n;
+        // Use native validation so the browser blocks submit when over the cap.
+        message.setCustomValidity(
+            n > MAX_WORDS
+                ? "Please keep your description to " + MAX_WORDS + " words or fewer."
+                : ""
+        );
+    }
+
+    if (message) {
+        message.addEventListener("input", updateCount);
+        updateCount();
+    }
+
+    function setStatus(text, kind) {
+        status.textContent = text;
+        status.className = "form_status" + (kind ? " " + kind : "");
+    }
+
+    // Browsers restore typed-in values on reload and when a page is served
+    // from the back/forward cache. `pageshow` fires on the initial load AND on
+    // those restores, so clearing here guarantees a blank form every time.
+    window.addEventListener("pageshow", function () {
+        form.reset();
+        updateCount();
+        setStatus("", "");
+    });
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        updateCount();
+        if (!form.reportValidity()) return;
+
+        setStatus("Sending…", "");
+
+        fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: { Accept: "application/json" }
+        })
+            .then(function (response) {
+                if (response.ok) {
+                    form.reset();
+                    updateCount();
+                    setStatus("Thanks! Your message has been sent.", "ok");
+                    return;
+                }
+                return response.json().then(function (data) {
+                    const msg =
+                        data && data.errors
+                            ? data.errors
+                                  .map(function (er) {
+                                      return er.message;
+                                  })
+                                  .join(", ")
+                            : "Something went wrong. Please try again.";
+                    setStatus(msg, "error");
+                });
+            })
+            .catch(function () {
+                setStatus("Network error. Please try again later.", "error");
+            });
+    });
+})();

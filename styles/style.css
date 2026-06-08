@@ -230,11 +230,98 @@ main > div > * {
     background-color: var(--brand-cream);
 }
 
-form {
-    font-size: clamp(1rem, 1.6vw, 1.5rem);
-    font-weight: 200;
-    color: white;
-    width: min(50vw, 600px);
+.contact_lead {
+    font-size: clamp(1.05rem, 2.2vw, 1.5rem);
+    font-weight: 300;
+    color: var(--brand-blue);
+    margin: 0;
+}
+
+.contact_form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: min(92vw, 540px);
+    text-align: left;
+    margin-top: 8px;
+}
+
+.form_field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form_field > span {
+    font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+    font-weight: 300;
+    color: var(--brand-blue);
+}
+
+.contact_form input,
+.contact_form textarea {
+    font-family: inherit;
+    font-size: 1rem;
+    color: #333;
+    background-color: #fff;
+    border: 2px solid var(--brand-blue);
+    border-radius: 8px;
+    padding: 10px 12px;
+    width: 100%;
+    resize: none;
+}
+
+.contact_form input:focus,
+.contact_form textarea:focus {
+    outline: none;
+    border-color: var(--brand-teal);
+    box-shadow: 0 0 0 3px rgba(2, 192, 208, 0.25);
+}
+
+.word_count {
+    align-self: flex-end;
+    font-size: 0.8rem;
+    color: var(--brand-blue);
+    opacity: 0.8;
+}
+
+.contact_form button {
+    align-self: center;
+    margin-top: 4px;
+    font-family: inherit;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 500;
+    color: #fff;
+    background-color: var(--brand-blue);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 36px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.contact_form button:hover {
+    background-color: var(--brand-teal);
+}
+
+.contact_form button:active {
+    transform: translateY(1px);
+}
+
+.form_status {
+    margin: 2px 0 0;
+    text-align: center;
+    font-size: 0.95rem;
+    min-height: 1.2em;
+    color: var(--brand-blue);
+}
+
+.form_status.ok {
+    color: #1a7f37;
+}
+
+.form_status.error {
+    color: #c1121f;
 }
 
 /* ============================================================
