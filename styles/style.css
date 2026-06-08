@@ -10,7 +10,7 @@
 
 html {
     background-color: #FED932;
-    font-family: "Anek Latin", sans-serif;
+    font-family: "Sarala", sans-serif;
     scroll-behavior: smooth;
     /* Prevent any stray element from causing horizontal scroll */
     overflow-x: hidden;
@@ -19,6 +19,10 @@ html {
 body {
     margin: 0;
     padding: 0;
+
+    /* Offset content so it never hides behind the fixed header.
+    JS keeps --header-height in sync with the real header size. */
+    padding-top: var(--header-height);
     overflow-x: hidden;
 }
 
@@ -47,9 +51,10 @@ img {
    ============================================================ */
 
 header {
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 10;
+    width: 100%;
 
     background-color: var(--brand-yellow);
     display: flex;
@@ -75,9 +80,11 @@ header {
 }
 
 h1 {
+    font-family: "Galada", cursive;
+    font-weight: 100;
     font-size: clamp(1.25rem, 3.5vw, 2.625rem);
     font-weight: 600;
-    color: var(--brand-blue);
+    color: var(--brand-teal);
     letter-spacing: clamp(1px, 0.4vw, 5px);
     margin: 0;
     line-height: 1.1;
@@ -96,8 +103,8 @@ h1 {
 
 a {
     font-size: clamp(1rem, 1.8vw, 1.625rem);
-    font-weight: 300;
-    color: var(--brand-blue);
+    font-weight: 400;
+    color: var(--brand-teal);
     text-decoration: none;
 }
 
@@ -165,19 +172,19 @@ main > div > * {
 }
 
 .hs_circle {
-    height: clamp(180px, 30vw, 350px);
-    width: clamp(180px, 30vw, 350px);
+    height: clamp(130px, 22vh, 280px);
+    width: clamp(130px, 22vh, 280px);
     object-fit: cover;
     border-radius: 50%;
 }
 
 .bio {
-    width: min(70%, 900px);
+    width: min(70%, 850px);
     max-width: 100%;
-    font-size: clamp(1rem, 1.8vw, 2rem);
+    font-size: clamp(0.9rem, 1.3vw, 1.3rem);
     font-weight: 200;
-    color: var(--brand-teal);
-    line-height: 1.4;
+    color: var(--brand-blue);
+    line-height: 1.35;
 }
 
 /* ============================================================
@@ -255,16 +262,51 @@ h3 {
    ============================================================ */
 
 footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(16px, 3vw, 28px);
     text-align: center;
     background-color: var(--brand-yellow);
-    padding: 10px 20px;
+    padding: 32px 20px;
 }
 
 h4 {
     font-size: clamp(0.9rem, 1.6vw, 1.5rem);
-    font-weight: 100;
+    font-weight: 300;
     color: var(--brand-teal);
     margin: 0;
+}
+
+/* SOCIAL LINKS */
+
+.social_links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(16px, 3vw, 28px);
+}
+
+.social {
+    display: inline-flex;
+    line-height: 0;
+    color: var(--brand-teal);
+}
+
+.social_icon {
+    width: clamp(24px, 4vw, 32px);
+    height: clamp(24px, 4vw, 32px);
+    fill: currentColor;
+    display: block;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.social:hover .social_icon {
+    opacity: 0.65;
+    transform: translateY(-2px);
 }
 
 /* ============================================================
@@ -307,5 +349,10 @@ h4 {
 
     .links {
         gap: 6px 14px;
+    }
+
+    .bio {
+    font-size: 0.85rem;
+    line-height: 1.35;
     }
 }
