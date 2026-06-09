@@ -10,7 +10,7 @@
 
 html {
     background-color: #FED932;
-    font-family: "Sarala", sans-serif;
+    font-family: "Tilt Neon", sans-serif;
     scroll-behavior: smooth;
     /* Prevent any stray element from causing horizontal scroll */
     overflow-x: hidden;
@@ -41,6 +41,7 @@ img {
     --brand-yellow: #FED932;
     --brand-cream: #FFF4AA;
     --brand-blue: #4E9FDE;
+    --brand-azure: #9ADFE7;
     --brand-teal: #02C0D0;
 
     --header-height: 80px;
@@ -193,6 +194,32 @@ main > div > * {
 
 #services {
     background-color: var(--brand-cream);
+}
+
+.services_columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(24px, 6vw, 80px);
+    width: min(95vw, 900px);
+    margin-top: 16px;
+}
+
+.service_col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Column heading (AUDIO / FILM) — stands out from the service h3 items */
+.col_title {
+    font-size: clamp(1.4rem, 3.4vw, 2.4rem);
+    font-weight: 600;
+    color: var(--brand-blue);
+    letter-spacing: 3px;
+    margin: 0 0 8px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--brand-blue);
 }
 
 /* ============================================================
@@ -399,6 +426,14 @@ h4 {
 /* ============================================================
    RESPONSIVE — TABLET / MOBILE
    ============================================================ */
+
+   /* Stack the AUDIO / FILM columns on narrow screens. */
+@media (max-width: 600px) {
+    .services_columns {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+}
 
 /* Stack the header (logo/title on top, links below, centered)
    once the single-row layout gets cramped. */
